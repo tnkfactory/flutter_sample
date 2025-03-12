@@ -1,16 +1,15 @@
-# myfirstdart
+# Flutter 매체 플러그인 적용 가이드 
 
-A new Flutter project.
+![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
 
-## Getting Started
+## 
+이 프로젝트는 tnk_flutter_rwd_plugin 적용 가이드 입니다.
 
-This project is a starting point for a Flutter application.
+##
+- tnk_flutter_rwd_plugin 적용 
+- placement view 구현 
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- [tnk 보상형 flutter plugin](https://github.com/tnkfactory/tnk_flutter_rwd_plugin)
+- [flutter pub dev](https://pub.dev/packages/tnk_flutter_rwd)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

@@ -15,7 +15,7 @@
 - 🔹 **Dart를 활용한 비즈니스 로직 처리**
 
 
-## 📦 tnk_flutter_rwd_ plugin 설치 방법
+## 📦 tnk_flutter_rwd_ plugin 
 
 [tnk 플러터 플러그인 가이드](https://github.com/tnkfactory/tnk_flutter_rwd_plugin)
 

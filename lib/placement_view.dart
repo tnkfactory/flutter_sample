@@ -44,37 +44,57 @@ class _PlacementViewItem extends State<PlacementViewItem>
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          pubInfo.title,
+          "placement view",
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.normal,
             color: Color(0xff353535),
           ),
         ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              showAdList(); // 더보기 클릭시 오퍼월 페이지로 이동
-            },
-            child: Text(
-              "더 보기",
-              style: TextStyle(color: Colors.black, fontSize: 14),
-            ),
-          ),
-        ],
+        actions: [],
       ),
       body: Center(
-        child: Container(
-          height: height,
-          padding: EdgeInsets.all(5),
-          color: Color(0xFFFFFFFF),
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: adList.length,
-            itemBuilder: (context, index) {
-              return setPlacementView(adList[index]);
-            },
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start, // Column 내 정렬
+          children: [
+            Container(
+              color: Colors.white,
+              // Row 배경색 흰색 지정
+              padding: EdgeInsets.fromLTRB(20, 18, 20, 10),
+              // 여백 추가
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                // 왼쪽 & 오른쪽 정렬
+                children: [
+                  Text(
+                    pubInfo.title,
+                    style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      showAdList(); // 더보기 클릭시 오퍼월 페이지로 이동
+                    },
+                    child: Text(
+                      "더 보기",
+                      style: TextStyle(color: Colors.black, fontSize: 14),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            Container(
+              height: height,
+              color: Color(0xFFFFFFFF),
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: adList.length,
+                itemBuilder: (context, index) {
+                  return setPlacementView(adList[index]);
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -88,15 +108,15 @@ class _PlacementViewItem extends State<PlacementViewItem>
     }
   }
 
-
   // 광고 리스트 호출
   Future<void> getAdList() async {
-
     try {
       await _tnkFlutterRwdPlugin.setUserName("jameson");
       await _tnkFlutterRwdPlugin.setCOPPA(false);
 
-      String? placementData = await _tnkFlutterRwdPlugin.getPlacementJsonData("offer_nor");
+      String? placementData = await _tnkFlutterRwdPlugin.getPlacementJsonData(
+        "offer_nor",
+      );
       _tnkFlutterRwdPlugin.setUseTermsPopup(false);
 
       if (placementData != null) {
@@ -161,7 +181,6 @@ class _PlacementViewItem extends State<PlacementViewItem>
       return;
     }
   }
-
 
   // placement view 설정
   Widget setPlacementView(TnkPlacementAdItem adItem) {
@@ -239,7 +258,6 @@ class _PlacementViewItem extends State<PlacementViewItem>
       ),
     );
   }
-
 
   Widget buildCpsPlacementView(TnkPlacementAdItem adItem) {
     return GestureDetector(
@@ -332,7 +350,6 @@ class _PlacementViewItem extends State<PlacementViewItem>
     );
   }
 
-
   Future<void> showAdList() async {
     String platformVersion;
 
@@ -341,7 +358,8 @@ class _PlacementViewItem extends State<PlacementViewItem>
       await _tnkFlutterRwdPlugin.setCOPPA(false);
 
       _tnkFlutterRwdPlugin.setUseTermsPopup(false);
-      platformVersion = await _tnkFlutterRwdPlugin.showAdList("미션 수행하기") ??
+      platformVersion =
+          await _tnkFlutterRwdPlugin.showAdList("미션 수행하기") ??
           'Unknown platform version';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
@@ -354,8 +372,3 @@ class _PlacementViewItem extends State<PlacementViewItem>
     });
   }
 }
-
-
-
-
-

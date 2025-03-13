@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Tnk flutter rwd',
+      title: 'TNK Flutter Sample',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
@@ -32,11 +32,15 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-const DEFAULT_VIEW = 1;
-const CPS_VIEW = 2;
+/**
+ * PlacementView Type 정의
+ */
+const DEFAULT_VIEW = 1; // default view
+const CPS_VIEW = 2; // cps view
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedType = DEFAULT_VIEW;
+
+  int _selectedType = DEFAULT_VIEW; // 선택된 PlacementView Type
 
   void _handleRadioValueChange(int? value) {
     setState(() {
@@ -47,12 +51,20 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Tnk flutter rwd')),
+      appBar: AppBar(title: Text('Tnk Flutter Sample')),
       body: Center(
         child: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text("placementView",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                // Margin
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Radio<int>(
                   value: DEFAULT_VIEW,
@@ -67,23 +79,34 @@ class _MyHomePageState extends State<MyHomePage> {
                   onChanged: _handleRadioValueChange,
                 ),
                 Text('Cps'),
-              ],
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder:
-                        (context) => PlacementViewItem(type: _selectedType),
+
+                VerticalDivider(),
+
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (context) => PlacementViewItem(type: _selectedType),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
                   ),
-                );
-              },
-              child: Text(
-                'Simple PlacementView',
-                style: TextStyle(fontSize: 14),
-              ),
+                  child: Text(
+                    'Show',
+                    style: TextStyle(fontSize: 14),
+                  ),
+                ),
+              ],
+
+
             ),
+
+
+
+
 
             Divider(),
 

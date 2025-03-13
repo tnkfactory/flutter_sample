@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tnk_flutter_rwd/tnk_flutter_rwd.dart';
+import 'offerwall.dart';
 import 'placement_data.dart';
 
 class PlacementViewItem extends StatefulWidget {
@@ -13,6 +14,9 @@ class PlacementViewItem extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _PlacementViewItem();
 }
+
+const DEFAULT_VIEW = 1; // default view
+const CPS_VIEW = 2; // cps view
 
 class _PlacementViewItem extends State<PlacementViewItem>
     with WidgetsBindingObserver {
@@ -32,6 +36,8 @@ class _PlacementViewItem extends State<PlacementViewItem>
 
   @override
   Widget build(BuildContext context) {
+    // container height _type 이 DEFAULT_VIEW 일때 194, 2일때 219
+    double height = _type == DEFAULT_VIEW ? 194 : 219;
 
     return Scaffold(
       appBar: AppBar(
@@ -47,7 +53,9 @@ class _PlacementViewItem extends State<PlacementViewItem>
         ),
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              showAdList(); // 더보기 클릭시 오퍼월 페이지로 이동
+            },
             child: Text(
               "더 보기",
               style: TextStyle(color: Colors.black, fontSize: 14),
@@ -57,6 +65,7 @@ class _PlacementViewItem extends State<PlacementViewItem>
       ),
       body: Center(
         child: Container(
+          height: height,
           padding: EdgeInsets.all(5),
           color: Color(0xFFFFFFFF),
           child: ListView.builder(
@@ -115,10 +124,6 @@ class _PlacementViewItem extends State<PlacementViewItem>
             pubInfo.plcmt_id = pubInfoMap["plcmt_id"];
             pubInfo.title = pubInfoMap["title"];
 
-
-
-
-
             _tnkResult = placementData ?? "null";
           });
         } else {
@@ -161,9 +166,9 @@ class _PlacementViewItem extends State<PlacementViewItem>
   Widget setPlacementView(TnkPlacementAdItem adItem) {
     switch (_type) {
       case 1:
-        return buildDefaultPlacementView(adItem);
+        return buildDefaultPlacementView(adItem); // Default view
       case 2:
-        return buildCpsPlacementView(adItem);
+        return buildCpsPlacementView(adItem); // CPS view
       default:
         return buildDefaultPlacementView(adItem);
     }
@@ -183,7 +188,7 @@ class _PlacementViewItem extends State<PlacementViewItem>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              width: 206,
+              width: 216,
               height: 107,
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -327,6 +332,26 @@ class _PlacementViewItem extends State<PlacementViewItem>
   }
 
 
+  Future<void> showAdList() async {
+    String platformVersion;
+
+    try {
+      await _tnkFlutterRwdPlugin.setUserName("testUser");
+      await _tnkFlutterRwdPlugin.setCOPPA(false);
+
+      _tnkFlutterRwdPlugin.setUseTermsPopup(false);
+      platformVersion = await _tnkFlutterRwdPlugin.showAdList("미션 수행하기") ??
+          'Unknown platform version';
+    } on PlatformException {
+      platformVersion = 'Failed to get platform version.';
+    }
+
+    if (!mounted) return;
+
+    setState(() {
+      _tnkResult = platformVersion;
+    });
+  }
 }
 
 

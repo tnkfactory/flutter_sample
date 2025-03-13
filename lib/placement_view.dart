@@ -184,14 +184,7 @@ class _PlacementViewItem extends State<PlacementViewItem>
 
   // placement view 설정
   Widget setPlacementView(TnkPlacementAdItem adItem) {
-    switch (_type) {
-      case 1:
-        return buildDefaultPlacementView(adItem); // Default view
-      case 2:
-        return buildCpsPlacementView(adItem); // CPS view
-      default:
-        return buildDefaultPlacementView(adItem);
-    }
+    return _type == CPS_VIEW ? buildCpsPlacementView(adItem) : buildDefaultPlacementView(adItem);
   }
 
   // placement view 구현하는 메소드 ( 기본 )
@@ -277,7 +270,6 @@ class _PlacementViewItem extends State<PlacementViewItem>
               ),
             ),
             // padding 8dp
-            SizedBox(height: 6),
             Text(
               adItem.app_nm,
               style: TextStyle(

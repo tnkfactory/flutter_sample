@@ -1,15 +1,22 @@
-# Flutter 매체 플러그인 적용 가이드 
+# 📱 Flutter Placement App
 
-![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
+![Flutter](https://img.shields.io/badge/Flutter-Framework-blue?logo=flutter)
+![Dart](https://img.shields.io/badge/Dart-Language-blue?logo=dart)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-## 
-이 프로젝트는 tnk_flutter_rwd_plugin 적용 가이드 입니다.
+## 📌 프로젝트 소개
+이 프로젝트는 **Flutter** 기반의 **Placement 관리 애플리케이션**입니다.  
+사용자는 데이터를 관리하고, 배치를 설정하며, UI를 통해 다양한 인터랙션을 수행할 수 있습니다.
 
-##
-- tnk_flutter_rwd_plugin 적용 
-- placement view 구현 
+## 🚀 주요 기능
+- 🔹 Flutter 기반의 UI/UX 구성
+- 🔹 **Placement Data 관리**
+- 🔹 **Placement View 구현**
+- 🔹 **Dart를 활용한 비즈니스 로직 처리**
 
 
-- [tnk 보상형 flutter plugin](https://github.com/tnkfactory/tnk_flutter_rwd_plugin)
-- [flutter pub dev](https://pub.dev/packages/tnk_flutter_rwd)
+## 📦 tnk_flutter_rwd_ plugin 설치 방법
+
+[tnk 플러터 플러그인 가이드](https://github.com/tnkfactory/tnk_flutter_rwd_plugin)
+
 

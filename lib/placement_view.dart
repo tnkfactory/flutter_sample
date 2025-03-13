@@ -163,6 +163,7 @@ class _PlacementViewItem extends State<PlacementViewItem>
   }
 
 
+  // placement view 설정
   Widget setPlacementView(TnkPlacementAdItem adItem) {
     switch (_type) {
       case 1:
